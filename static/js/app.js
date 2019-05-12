@@ -11,3 +11,10 @@ var dataController = (function() {
 
     }
 })();
+
+var  controller = (function() {
+    // Some Code here
+    return {
+
+    }
+})();
