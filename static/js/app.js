@@ -4,3 +4,10 @@ var  UIController = (function() {
 
     }
 })();
+
+var dataController = (function() {
+    // Some Code here
+    return {
+
+    }
+})();
