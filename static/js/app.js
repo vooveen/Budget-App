@@ -14,7 +14,8 @@ var dataController = (function() {
 
 // Controller to link between UI and Budget controllers
 var  controller = (function(UICtrl, dataCtrl) {
+    var addButton = document.querySelector('.add__btn');
+    addButton.addEventListener('click', function() {
 
-    // Some Code here
-
+    });
 })(UIController, dataController);
