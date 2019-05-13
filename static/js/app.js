@@ -16,6 +16,11 @@ var dataController = (function() {
 var  controller = (function(UICtrl, dataCtrl) {
     var addButton = document.querySelector('.add__btn');
     addButton.addEventListener('click', function() {
-
+        // TODO LIST
+        // 1. Get the data from fieds
+        // 2. Add the data to dataController
+        // 3. Display data in Incomes or Expenses
+        // 4. Calculate the Budget
+        // 5. Update the Budget
     });
 })(UIController, dataController);
