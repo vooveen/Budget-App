@@ -10,8 +10,16 @@ var  UIController = (function() {
     return {
         getDomStr: function() {
             return domStr;
+        },
+        // Get data from fields
+        getInput: function() {
+            return {
+                type: document.querySelector(domStr.inputType).value,
+                description: document.querySelector(domStr.inputDesc).value,
+                value: document.querySelector(domStr.inputVal).value
+            }
         }
-    }
+    };
 })();
 
 // Budget Controller
@@ -27,6 +35,7 @@ var  controller = (function(UICtrl, dataCtrl) {
     var ctrlAddButton = function() {
         // TODO LIST
         // 1. Get the data from fieds
+        var inputData = UIController.getInput();
         // 2. Add the data to dataController
         // 3. Display data in Incomes or Expenses
         // 4. Calculate the Budget
