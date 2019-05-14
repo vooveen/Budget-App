@@ -31,7 +31,19 @@ var dataController = (function() {
 
 // Controller to link between UI and Budget controllers
 var  controller = (function(UICtrl, dataCtrl) {
-    var domStr = UIController.getDomStr();
+    var setEventListeners = function() {
+        var domStr = UIController.getDomStr();
+        // Add button fuctionality
+        var addButton = document.querySelector(domStr.inputBtn);
+        addButton.addEventListener('click', ctrlAddButton);
+
+        // When taping enter to retrieve data from field
+        document.addEventListener('keypress', function(event) {
+            if(event.charCode === 13 || event.which === 13 ) {
+                ctrlAddButton();
+            }
+        });
+    };
     var ctrlAddButton = function() {
         // TODO LIST
         // 1. Get the data from fieds
@@ -41,14 +53,13 @@ var  controller = (function(UICtrl, dataCtrl) {
         // 4. Calculate the Budget
         // 5. Update the Budget
     };
-    // Add button fuctionality
-    var addButton = document.querySelector(domStr.inputBtn);
-    addButton.addEventListener('click', ctrlAddButton);
-
-    // When taping enter to retrieve data from field
-    document.addEventListener('keypress', function(event) {
-        if(event.charCode === 13 || event.which === 13 ) {
-            ctrlAddButton();
+    return {
+        init: function() {
+            console.log('The app started');
+            setEventListeners();
         }
-    });
+    };
+
 })(UIController, dataController);
+
+controller.init();
