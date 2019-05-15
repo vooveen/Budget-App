@@ -24,9 +24,29 @@ var  UIController = (function() {
 
 // Budget Controller
 var dataController = (function() {
-
-    // Some Code here
-
+    // Expense function constructor
+    var Expense = function(id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+    // Income function constructor
+    var Income = function(id, description, value) {
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+    // Array to store data
+    var data = {
+        allData: {
+            exp: [],
+            inc: []
+        },
+        totals: {
+            exp: 0,
+            inc: 0
+        }
+    };
 })();
 
 // Controller to link between UI and Budget controllers
