@@ -38,6 +38,20 @@ var  UIController = (function() {
 
             // Insert the html into the DOM
             document.querySelector(elem).insertAdjacentHTML('beforeend', newHtml);
+        },
+        // Clear the input fields
+        clearFields: function() {
+            var fields, fieldsArray;
+            // Select description and value fields
+            fields = document.querySelectorAll(domStr.inputDesc+', '+domStr.inputVal);
+            // Convert the list item to an array
+            fieldsArray = Array.prototype.slice.call(fields);
+            // Loop through the array and clear the values
+            fieldsArray.forEach(function(current, index, array) {
+                current.value = "";
+            });
+            // Set the focus to the description field
+            fieldsArray[0].focus();
         }
     };
 })();
@@ -113,6 +127,8 @@ var  controller = (function(UICtrl, dataCtrl) {
         newItem = dataController.addItem(inputData.type, inputData.description, inputData.value);
         // 3. Display data in Incomes or Expenses
         UIController.addListItem(newItem, inputData.type);
+        // Clear fields and focus on description field
+        UIController.clearFields();
         // 4. Calculate the Budget
         // 5. Update the Budget
     };
