@@ -5,7 +5,9 @@ var  UIController = (function() {
         inputType: '.add__type',
         inputDesc: '.add__description',
         inputVal: '.add__value',
-        inputBtn: '.add__btn'
+        inputBtn: '.add__btn',
+        domIncome: '.income__list',
+        domExpense: '.expenses__list'
     }
     return {
         getDomStr: function() {
@@ -18,6 +20,24 @@ var  UIController = (function() {
                 description: document.querySelector(domStr.inputDesc).value,
                 value: document.querySelector(domStr.inputVal).value
             }
+        },
+        // Add item to the UI
+        addListItem: function(obj, type) {
+            var html, newHtml, elem;
+            if (type === 'inc') {
+                elem = domStr.domIncome;
+                html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            } else if (type === 'exp') {
+                elem = domStr.domExpense;
+                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            }
+            // Replace the values of the html
+            newHtml = html.replace('%id%', obj.id);
+            newHtml = newHtml.replace('%description%', obj.description);
+            newHtml = newHtml.replace('%value%', obj.value);
+
+            // Insert the html into the DOM
+            document.querySelector(elem).insertAdjacentHTML('beforeend', newHtml);
         }
     };
 })();
@@ -92,12 +112,12 @@ var  controller = (function(UICtrl, dataCtrl) {
         // 2. Add the data to dataController
         newItem = dataController.addItem(inputData.type, inputData.description, inputData.value);
         // 3. Display data in Incomes or Expenses
+        UIController.addListItem(newItem, inputData.type);
         // 4. Calculate the Budget
         // 5. Update the Budget
     };
     return {
         init: function() {
-            console.log('The app started');
             setEventListeners();
         }
     };
