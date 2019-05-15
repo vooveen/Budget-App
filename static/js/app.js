@@ -47,6 +47,26 @@ var dataController = (function() {
             inc: 0
         }
     };
+    return {
+        addItem: function(type, desc, val) {
+            var newItem, ID;
+            //Create new ID
+            if (data.allData[type].length > 1) {
+                ID = data.allData[type][data.allData[type].length - 1].id + 1;
+            } else {
+                ID = 0;
+            }
+            // Create new item
+            if (type === 'inc') {
+                newItem = new Income(ID, desc, val);
+            } else if (type === 'exp'){
+                newItem = new Income(ID, desc, val);
+            }
+            // Push the created item to the data structure
+            data.allData[type].push(newItem);
+            return newItem;
+        }
+    };
 })();
 
 // Controller to link between UI and Budget controllers
@@ -65,10 +85,12 @@ var  controller = (function(UICtrl, dataCtrl) {
         });
     };
     var ctrlAddButton = function() {
+        var inputData, newItem;
         // TODO LIST
         // 1. Get the data from fieds
-        var inputData = UIController.getInput();
+        inputData = UIController.getInput();
         // 2. Add the data to dataController
+        newItem = dataController.addItem(inputData.type, inputData.description, inputData.value);
         // 3. Display data in Incomes or Expenses
         // 4. Calculate the Budget
         // 5. Update the Budget
