@@ -124,7 +124,9 @@ controller = (function(UICtrl, dataCtrl) {
         });
     };
     updateBudget = function() {
-
+        // 1. Calculate the Budget
+        // 2. Return the Budget
+        // 3. Update the Budget on the UI
     };
     ctrlAddButton = function() {
         var inputData, newItem, input;
@@ -138,10 +140,10 @@ controller = (function(UICtrl, dataCtrl) {
         newItem = dataController.addItem(inputData.type, inputData.description, inputData.value);
         // 3. Display data in Incomes or Expenses
         UIController.addListItem(newItem, inputData.type);
-        // Clear fields and focus on description field
+        // 4. Clear fields and focus on description field
         UIController.clearFields();
-        // 4. Calculate the Budget
-        // 5. Update the Budget
+        // 5. Calculate and update the budget
+        updateBudget();
         }
     };
     return {
