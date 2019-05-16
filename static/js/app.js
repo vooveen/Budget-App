@@ -18,7 +18,7 @@ var  UIController = (function() {
             return {
                 type: document.querySelector(domStr.inputType).value,
                 description: document.querySelector(domStr.inputDesc).value,
-                value: document.querySelector(domStr.inputVal).value
+                value: parseFloat(document.querySelector(domStr.inputVal).value)
             }
         },
         // Add item to the UI
