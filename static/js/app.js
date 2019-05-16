@@ -121,6 +121,7 @@ var  controller = (function(UICtrl, dataCtrl) {
     var ctrlAddButton = function() {
         var inputData, newItem, input;
         input = UIController.getInput();
+        // Verify if the description and value fields are not empty and the value field is not equal to 0
         if (input.description !== "" && !isNaN(input.value) && input.value !==0) {
         // TODO LIST
         // 1. Get the data from fieds
