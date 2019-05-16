@@ -119,7 +119,9 @@ var  controller = (function(UICtrl, dataCtrl) {
         });
     };
     var ctrlAddButton = function() {
-        var inputData, newItem;
+        var inputData, newItem, input;
+        input = UIController.getInput();
+        if (input.description !== "" && !isNaN(input.value) && input.value !==0) {
         // TODO LIST
         // 1. Get the data from fieds
         inputData = UIController.getInput();
@@ -131,6 +133,7 @@ var  controller = (function(UICtrl, dataCtrl) {
         UIController.clearFields();
         // 4. Calculate the Budget
         // 5. Update the Budget
+        }
     };
     return {
         init: function() {
