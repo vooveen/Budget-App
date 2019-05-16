@@ -1,7 +1,9 @@
+var UIController, dataController, controller;
 // UI Controller
-var  UIController = (function() {
+UIController = (function() {
+    var domStr;
     // Set selectors to variables
-    var domStr = {
+    domStr = {
         inputType: '.add__type',
         inputDesc: '.add__description',
         inputVal: '.add__value',
@@ -57,21 +59,22 @@ var  UIController = (function() {
 })();
 
 // Budget Controller
-var dataController = (function() {
+dataController = (function() {
+    var Expense, Income, data;
     // Expense function constructor
-    var Expense = function(id, description, value) {
+    Expense = function(id, description, value) {
         this.id = id;
         this.description = description;
         this.value = value;
     };
     // Income function constructor
-    var Income = function(id, description, value) {
+    Income = function(id, description, value) {
         this.id = id;
         this.description = description;
         this.value = value;
     };
     // Array to store data
-    var data = {
+    data = {
         allData: {
             exp: [],
             inc: []
@@ -104,11 +107,13 @@ var dataController = (function() {
 })();
 
 // Controller to link between UI and Budget controllers
-var  controller = (function(UICtrl, dataCtrl) {
-    var setEventListeners = function() {
-        var domStr = UIController.getDomStr();
+controller = (function(UICtrl, dataCtrl) {
+    var setEventListeners, updateBudget, ctrlAddButton;
+    setEventListeners = function() {
+        var domStr, addButton;
+        domStr = UIController.getDomStr();
         // Add button fuctionality
-        var addButton = document.querySelector(domStr.inputBtn);
+        addButton = document.querySelector(domStr.inputBtn);
         addButton.addEventListener('click', ctrlAddButton);
 
         // When taping enter to retrieve data from field
@@ -118,7 +123,10 @@ var  controller = (function(UICtrl, dataCtrl) {
             }
         });
     };
-    var ctrlAddButton = function() {
+    updateBudget = function() {
+
+    };
+    ctrlAddButton = function() {
         var inputData, newItem, input;
         input = UIController.getInput();
         // Verify if the description and value fields are not empty and the value field is not equal to 0
