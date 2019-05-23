@@ -60,7 +60,7 @@ UIController = (function() {
 
 // Budget Controller
 dataController = (function() {
-    var Expense, Income, data;
+    var Expense, Income, data, calculateTotale;
     // Expense function constructor
     Expense = function(id, description, value) {
         this.id = id;
@@ -72,6 +72,13 @@ dataController = (function() {
         this.id = id;
         this.description = description;
         this.value = value;
+    };
+    calculateTotale = function(type){
+        var sum = 0;
+        data.allData[type].forEach(function(cur) {
+            sum += cur.value;
+        });
+        data.totals[type] = sum;
     };
     // Array to store data
     data = {
@@ -102,6 +109,13 @@ dataController = (function() {
             // Push the created item to the data structure
             data.allData[type].push(newItem);
             return newItem;
+        },
+        calculateBudget: function() {
+            // Calculate totale incomes and expenses
+
+            // Calculate the budget : incomes - expenses
+
+            // Calculate percentage of incomes we spent
         }
     };
 })();
