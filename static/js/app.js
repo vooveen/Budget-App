@@ -90,7 +90,9 @@ dataController = (function() {
         totals: {
             exp: 0,
             inc: 0
-        }
+        },
+        budget: 0,
+        percentage: -1
     };
     return {
         addItem: function(type, desc, val) {
@@ -113,10 +115,16 @@ dataController = (function() {
         },
         calculateBudget: function() {
             // Calculate totale incomes and expenses
-
+            calculateTotale('exp');
+            calculateTotale('inc');
             // Calculate the budget : incomes - expenses
-
+            data.budget = data.totals.inc - data.totals.exp;
             // Calculate percentage of incomes we spent
+            if(data.totals.inc > 0) {
+                data.percentage = (data.totals.exp / data.totals.inc) * 100;
+            } else {
+                data.percentage = -1;
+            }
         }
     };
 })();
