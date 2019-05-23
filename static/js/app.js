@@ -73,6 +73,7 @@ dataController = (function() {
         this.description = description;
         this.value = value;
     };
+    // Calculate totale incomes and expenses
     calculateTotale = function(type){
         var sum = 0;
         data.allData[type].forEach(function(cur) {
