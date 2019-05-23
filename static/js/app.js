@@ -125,6 +125,14 @@ dataController = (function() {
             } else {
                 data.percentage = -1;
             }
+        },
+        getBudget: function(){
+            return {
+                budget: data.budget,
+                totalinc: data.totals.totalinc,
+                totalexp: data.totals.totalexp,
+                perc: data.percentage
+            }
         }
     };
 })();
@@ -148,8 +156,11 @@ controller = (function(UICtrl, dataCtrl) {
     };
     updateBudget = function() {
         // 1. Calculate the Budget
+        dataController.calculateBudget();
         // 2. Return the Budget
+        var budget = getBudget();
         // 3. Update the Budget on the UI
+        console.log(budget);
     };
     ctrlAddButton = function() {
         var inputData, newItem, input;
