@@ -115,13 +115,13 @@ dataController = (function() {
         },
         calculateBudget: function() {
             // Calculate totale incomes and expenses
-            calculateTotale('exp');
             calculateTotale('inc');
+            calculateTotale('exp');
             // Calculate the budget : incomes - expenses
             data.budget = data.totals.inc - data.totals.exp;
             // Calculate percentage of incomes we spent
             if(data.totals.inc > 0) {
-                data.percentage = (data.totals.exp / data.totals.inc) * 100;
+                data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
             } else {
                 data.percentage = -1;
             }
@@ -129,8 +129,8 @@ dataController = (function() {
         getBudget: function(){
             return {
                 budget: data.budget,
-                totalinc: data.totals.totalinc,
-                totalexp: data.totals.totalexp,
+                totalinc: data.totals.inc,
+                totalexp: data.totals.exp,
                 perc: data.percentage
             }
         }
@@ -158,7 +158,7 @@ controller = (function(UICtrl, dataCtrl) {
         // 1. Calculate the Budget
         dataController.calculateBudget();
         // 2. Return the Budget
-        var budget = getBudget();
+        var budget = dataController.getBudget();
         // 3. Update the Budget on the UI
         console.log(budget);
     };
